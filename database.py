@@ -1,44 +1,40 @@
-# database.py (extrait)
+# database.py
+
 from sqlalchemy import create_engine, Column, Integer, String, DateTime, ForeignKey, Float
 from sqlalchemy.orm import sessionmaker, declarative_base, relationship
 from datetime import datetime
-import bcrypt
 from passlib.context import CryptContext
 
-DATABASE_URL = "postgresql://user:password@host:port/dbname"
+# Remplacer par les informations de votre base de données PostgreSQL
+DATABASE_URL = "postgresql://user:password@localhost:5432/diabetoweb_db"
 
 engine = create_engine(DATABASE_URL)
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
 
+pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+
 class Medecin(Base):
+    """
+    Modèle de la table 'medecins'
+    """
     __tablename__ = "medecins"
+
     id = Column(Integer, primary_key=True, index=True)
     username = Column(String, unique=True, index=True)
     email = Column(String, unique=True, index=True)
     password_hash = Column(String)
     created_at = Column(DateTime, default=datetime.utcnow)
 
-    def set_password(self, password):
-        self.password_hash = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
+    def set_password(self, password: str):
+        self.password_hash = pwd_context.hash(password)
 
-    def check_password(self, password):
-        return bcrypt.checkpw(password.encode('utf-8'), self.password_hash.encode('utf-8'))
-
-# Crée les tables dans la base de données
-# Lancez cette fonction une seule fois au début du projet
-def create_tables():
-    print("Création des tables dans la base de données...")
-    Base.metadata.create_all(bind=engine)
-
-if __name__ == "__main__":
-    create_tables()
-
-# Créez les tables (à faire une seule fois)
-# Base.metadata.create_all(bind=engine)
+    def verify_password(self, password: str):
+        return pwd_context.verify(password, self.password_hash)
 
 class Patient(Base):
     """
-    Modèle de la table 'patients' dans la base de données.
+    Modèle de la table 'patients'
     """
     __tablename__ = "patients"
 
@@ -52,16 +48,13 @@ class Patient(Base):
     bloodpressure = Column(Float)
     pedigree = Column(Float)
     created_at = Column(DateTime, default=datetime.utcnow)
-
-    # Relation avec la table Medecin
-    doctor = relationship("Medecin")
-
-    # Colonne pour stocker le résultat de la prédiction (nous l'utiliserons plus tard)
     prediction_result = Column(Integer, nullable=True)
 
-# Créez les tables (à lancer une fois ou au démarrage de l'app)
+    doctor = relationship("Medecin")
+
 def create_tables():
-    print("Création ou mise à jour des tables...")
+    """Crée les tables dans la base de données."""
+    print("Création des tables dans la base de données...")
     Base.metadata.create_all(bind=engine)
 
 if __name__ == "__main__":
