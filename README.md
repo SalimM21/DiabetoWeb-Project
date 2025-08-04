@@ -76,7 +76,7 @@ Structure des fichiers
 diabetoweb_app/
 ├── ml_model/
 │   ├── model.pkl
-│   └── scaler.pkl  # Optionnel, si utilisé
+│   └── scaler.pkl 
 ├── templates/
 │   ├── login.html
 │   ├── patients.html
