@@ -71,6 +71,8 @@ uvicorn main:app --reload
 Ouvrez votre navigateur et accédez à l'adresse : http://127.0.0.1:8000
 
 Structure des fichiers
+
+```bash
 diabetoweb_app/
 ├── ml_model/
 │   ├── model.pkl
@@ -82,6 +84,7 @@ diabetoweb_app/
 ├── main.py        # Logique de l'API FastAPI et routes
 └── database.py    # Configuration de la BDD et modèles SQLAlchemy
 
+```
 Auteurs et Contact
 Ce projet a été réalisé dans le cadre de [Votre Contexte ici].
 
