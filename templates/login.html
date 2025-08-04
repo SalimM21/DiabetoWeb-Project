@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authentification</title>
+    <style>
+        body { font-family: Arial, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #f0f2f5; }
+        .container { background: white; padding: 20px 40px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); }
+        .form-section { margin-bottom: 20px; }
+        h2 { text-align: center; color: #333; }
+        input[type="text"], input[type="password"], input[type="email"] { width: 100%; padding: 10px; margin: 8px 0; display: inline-block; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        button { background-color: #4CAF50; color: white; padding: 14px 20px; margin: 8px 0; border: none; border-radius: 4px; cursor: pointer; width: 100%; }
+        button:hover { background-color: #45a049; }
+        .message { text-align: center; color: red; margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Se connecter</h2>
+        {% if error_login %}
+            <div class="message">{{ error_login }}</div>
+        {% endif %}
+        <form method="post" action="/login">
+            <div class="form-section">
+                <label for="username_login">Nom d'utilisateur</label>
+                <input type="text" id="username_login" name="username" required>
+            </div>
+            <div class="form-section">
+                <label for="password_login">Mot de passe</label>
+                <input type="password" id="password_login" name="password" required>
+            </div>
+            <button type="submit">Connexion</button>
+        </form>
+
+        <hr style="margin: 20px 0;">
+
+        <h2>Créer un compte</h2>
+        {% if error_register %}
+            <div class="message">{{ error_register }}</div>
+        {% endif %}
+        <form method="post" action="/register">
+            <div class="form-section">
+                <label for="username_register">Nom d'utilisateur</label>
+                <input type="text" id="username_register" name="username" required>
+            </div>
+            <div class="form-section">
+                <label for="email_register">Adresse e-mail</label>
+                <input type="email" id="email_register" name="email" required>
+            </div>
+            <div class="form-section">
+                <label for="password_register">Mot de passe</label>
+                <input type="password" id="password_register" name="password" required>
+            </div>
+            <div class="form-section">
+                <label for="confirm_password">Confirmation du mot de passe</label>
+                <input type="password" id="confirm_password" name="confirm_password" required>
+            </div>
+            <button type="submit">Créer un compte</button>
+        </form>
+    </div>
+</body>
+</html>

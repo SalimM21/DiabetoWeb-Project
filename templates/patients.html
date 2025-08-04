@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tableau de bord des patients</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; background-color: #f0f2f5; }
+        .container { max-width: 1200px; margin: auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); }
+        h1 { text-align: center; color: #333; margin-bottom: 20px; }
+        .stats { text-align: center; margin-bottom: 20px; font-size: 1.1em; color: #555; }
+        .add-link { display: inline-block; padding: 10px 15px; background-color: #28a745; color: white; text-decoration: none; border-radius: 4px; margin-bottom: 20px; }
+        .add-link:hover { background-color: #218838; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        th { background-color: #007bff; color: white; }
+        tr:nth-child(even) { background-color: #f2f2f2; }
+        .result-diabete { color: #dc3545; font-weight: bold; }
+        .result-non-diabete { color: #28a745; font-weight: bold; }
+        .actions button { background-color: #dc3545; color: white; border: none; padding: 8px 12px; cursor: pointer; border-radius: 4px; }
+        .actions button:hover { background-color: #c82333; }
+        .logout-link { position: absolute; top: 20px; right: 20px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Tableau de bord des patients</h1>
+        <p class="stats">
+            Vous avez <strong>{{ total_patients }}</strong> patients.
+            {% if total_patients > 0 %}
+                Dont <strong>{{ diabetic_patients }}</strong> ({{ diabetic_percentage|round(2) }}%) avec un risque de diabète.
+            {% endif %}
+        </p>
+        <a href="/add" class="add-link">Ajouter un patient</a>
+        <a href="/logout" class="logout-link">Déconnexion</a>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Âge</th>
+                    <th>Glucose</th>
+                    <th>Pression</th>
+                    <th>IMC</th>
+                    <th>Résultat</th>
+                    <th>Date d'ajout</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for patient in patients %}
+                <tr>
+                    <td>{{ patient.name }}</td>
+                    <td>{{ patient.age }}</td>
+                    <td>{{ patient.glucose }}</td>
+                    <td>{{ patient.bloodpressure }}</td>
+                    <td>{{ patient.bmi }}</td>
+                    <td>
+                        {% if patient.prediction_result == 1 %}
+                            <span class="result-diabete">Diabétique</span>
+                        {% elif patient.prediction_result == 0 %}
+                            <span class="result-non-diabete">Non Diabétique</span>
+                        {% else %}
+                            <span>Non prédit</span>
+                        {% endif %}
+                    </td>
+                    <td>{{ patient.created_at.strftime('%d-%m-%Y') }}</td>
+                    <td class="actions">
+                        <form action="/delete/{{ patient.id }}" method="post" style="display:inline;">
+                            <button type="submit">Supprimer</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
