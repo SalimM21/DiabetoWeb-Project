@@ -1,76 +1,81 @@
 # DiabetoWeb-Project --> Système d'aide au diagnostic du diabète pour les médecins
 
-## Introduction
-DiabetoWeb est une application web sécurisée conçue pour les médecins, visant à moderniser la gestion des dossiers patients et à soutenir le dépistage précoce du diabète. En combinant un système de gestion de données robuste avec un modèle d'intelligence artificielle, l'application offre un outil d'aide à la décision pour évaluer le risque de diabète chez les patients.
+# DiabetoWeb
 
-## Fonctionnalités
-Authentification sécurisée : Les médecins peuvent s'inscrire et se connecter à leur compte pour garantir la confidentialité des données.
+**DiabetoWeb** est une application web sécurisée conçue pour les médecins. Son objectif est de moderniser la gestion des dossiers patients et de soutenir le dépistage précoce du diabète. En combinant un système de gestion de données robuste avec un modèle de Machine Learning, l'application offre un outil d'aide à la décision pour évaluer le risque de diabète chez les patients.
 
-Gestion des dossiers patients : Une interface intuitive permet d'ajouter, de consulter, de modifier et de supprimer les informations des patients et leurs données cliniques.
+---
 
-Prédiction du diabète : Un modèle de Machine Learning analyse les données cliniques soumises et fournit une prédiction instantanée du risque de diabète (diabétique/non-diabétique).
+### Fonctionnalités Clés
 
-Tableau de bord récapitulatif : Un tableau de bord affiche une vue d'ensemble des patients, avec des statistiques clés telles que le pourcentage de patients à risque.
+* **Authentification sécurisée** : Les médecins peuvent s'inscrire et se connecter à leur compte pour garantir la confidentialité des données.
+* **Gestion des dossiers patients** : Une interface intuitive permet d'ajouter, de consulter, de modifier et de supprimer les informations des patients et leurs données cliniques.
+* **Prédiction du diabète** : Un modèle de Machine Learning analyse les données cliniques soumises et fournit une prédiction instantanée du risque de diabète (diabétique/non-diabétique).
+* **Tableau de bord récapitulatif** : Un tableau de bord affiche une vue d'ensemble des patients, avec des statistiques clés telles que le pourcentage de patients à risque.
 
-## Technologies Utilisées
-Backend : FastAPI
+---
 
-Frontend : HTML, CSS, Jinja2
+### Technologies Utilisées
 
-Base de données : PostgreSQL
+* **Backend** : FastAPI
+* **Frontend** : HTML, CSS, Jinja2
+* **Base de données** : PostgreSQL
+* **Machine Learning** : scikit-learn, joblib
+* **Gestion des mots de passe** : Passlib (bcrypt)
+* **Serveur** : Uvicorn
 
-Machine Learning : scikit-learn, joblib
+---
 
-Gestion des mots de passe : Passlib (bcrypt)
+### Guide d'installation
 
-Serveur : Uvicorn
-
-## Guide d'installation
 Suivez ces étapes pour mettre en place et exécuter le projet localement.
 
-1. Prérequis
+#### Prérequis
 Assurez-vous que les logiciels suivants sont installés sur votre machine :
+* **Python 3.8+**
+* **PostgreSQL**
 
-Python 3.8+
+#### Configuration du projet
+1.  **Cloner le dépôt** :
+    ```bash
+    git clone [URL_DU_DÉPÔT]
+    ```
+2.  **Naviguer vers le dossier du projet** :
+    ```bash
+    cd DiabetoWeb
+    ```
+3.  **Créer et activer un environnement virtuel** :
+    ```bash
+    python -m venv venv
+    # Sur macOS/Linux
+    source venv/bin/activate
+    # Sur Windows
+    venv\Scripts\activate
+    ```
+4.  **Installer les dépendances Python** :
+    ```bash
+    pip install fastapi "uvicorn[standard]" jinja2 sqlalchemy psycopg2-binary passlib[bcrypt]
+    ```
 
-PostgreSQL
+#### Configuration de la base de données
+1.  Créez une base de données PostgreSQL nommée `diabetoweb_db`.
+2.  Modifiez le fichier `database.py` pour y ajouter les identifiants de votre base de données :
+    ```python
+    DATABASE_URL = "postgresql://[votre_utilisateur]:[votre_mot_de_passe]@[votre_hôte]:5432/diabetoweb_db"
+    ```
+3.  Créez les tables en exécutant votre script de création de tables (si vous en avez un). Sinon, les tables seront créées au premier lancement si votre code utilise `Base.metadata.create_all(bind=engine)`.
 
-2. Configuration du projet
-Cloner le dépôt :
-git clone [URL_DU_DÉPÔT]
+#### Démarrage de l'application
+1.  Placez votre modèle **`model.pkl`** (et tout autre fichier de modèle, comme `scaler.pkl`) dans un dossier `ml_model/` à la racine du projet.
+2.  Lancez l'application avec Uvicorn :
+    ```bash
+    uvicorn main:app --reload
+    ```
+3.  Ouvrez votre navigateur et accédez à l'adresse : **http://127.0.0.1:8000**
 
-Naviguer vers le dossier du projet :
-cd DiabetoWeb
+---
 
-Créer et activer un environnement virtuel :
-python -m venv venv
-
-Sur macOS/Linux : source venv/bin/activate
-
-Sur Windows : venv\Scripts\activate
-
-Installer les dépendances Python :
-pip install -r requirements.txt
-(Si vous n'avez pas de fichier requirements.txt, vous pouvez l'installer manuellement : pip install fastapi "uvicorn[standard]" jinja2 sqlalchemy psycopg2-binary passlib[bcrypt])
-
-3. Configuration de la base de données
-Créez une base de données PostgreSQL nommée diabetoweb_db.
-
-Modifiez le fichier database.py pour y ajouter les identifiants de votre base de données :
-DATABASE_URL = "postgresql://[votre_utilisateur]:[votre_mot_de_passe]@[votre_hôte]:5432/diabetoweb_db"
-
-Créez les tables en exécutant le script :
-python database.py
-
-4. Démarrage de l'application
-Placez votre modèle model.pkl (et scaler.pkl si utilisé) dans un dossier ml_model/ à la racine du projet.
-
-Lancez l'application avec Uvicorn :
-uvicorn main:app --reload
-
-Ouvrez votre navigateur et accédez à l'adresse : http://127.0.0.1:8000
-
-Structure des fichiers
+### Structure des fichiers
 
 ```bash
 diabetoweb_app/
