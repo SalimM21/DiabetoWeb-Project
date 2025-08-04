@@ -80,7 +80,7 @@ Assurez-vous que les logiciels suivants sont installés sur votre machine :
 ```bash
 diabetoweb_app/
 ├── ml_model/
-│   ├── model.pkl
+│   ├── diabetes_risk_prediction_model.pkl
 │   └── scaler.pkl 
 ├── templates/
 │   ├── login.html
