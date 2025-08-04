@@ -1,9 +1,9 @@
 # DiabetoWeb-Project --> Système d'aide au diagnostic du diabète pour les médecins
 
-Introduction
+## Introduction
 DiabetoWeb est une application web sécurisée conçue pour les médecins, visant à moderniser la gestion des dossiers patients et à soutenir le dépistage précoce du diabète. En combinant un système de gestion de données robuste avec un modèle d'intelligence artificielle, l'application offre un outil d'aide à la décision pour évaluer le risque de diabète chez les patients.
 
-Fonctionnalités
+## Fonctionnalités
 Authentification sécurisée : Les médecins peuvent s'inscrire et se connecter à leur compte pour garantir la confidentialité des données.
 
 Gestion des dossiers patients : Une interface intuitive permet d'ajouter, de consulter, de modifier et de supprimer les informations des patients et leurs données cliniques.
@@ -12,7 +12,7 @@ Prédiction du diabète : Un modèle de Machine Learning analyse les données cl
 
 Tableau de bord récapitulatif : Un tableau de bord affiche une vue d'ensemble des patients, avec des statistiques clés telles que le pourcentage de patients à risque.
 
-Technologies Utilisées
+## Technologies Utilisées
 Backend : FastAPI
 
 Frontend : HTML, CSS, Jinja2
@@ -25,7 +25,7 @@ Gestion des mots de passe : Passlib (bcrypt)
 
 Serveur : Uvicorn
 
-Guide d'installation
+## Guide d'installation
 Suivez ces étapes pour mettre en place et exécuter le projet localement.
 
 1. Prérequis
@@ -85,7 +85,4 @@ diabetoweb_app/
 └── database.py    # Configuration de la BDD et modèles SQLAlchemy
 
 ```
-Auteurs et Contact
-Ce projet a été réalisé dans le cadre de [Votre Contexte ici].
 
-Pour toute question ou suggestion, veuillez contacter [Votre Nom/Équipe].
