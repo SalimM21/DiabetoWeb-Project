@@ -38,7 +38,7 @@ Assurez-vous que les logiciels suivants sont installés sur votre machine :
 #### Configuration du projet
 1.  **Cloner le dépôt** :
     ```bash
-    git clone [URL_DU_DÉPÔT]
+    git clone https://github.com/SalimM21/DiabetoWeb-Project.git
     ```
 2.  **Naviguer vers le dossier du projet** :
     ```bash
