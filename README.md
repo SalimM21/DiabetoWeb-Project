@@ -90,4 +90,3 @@ diabetoweb_app/
 └── database.py    # Configuration de la BDD et modèles SQLAlchemy
 
 ```
-
