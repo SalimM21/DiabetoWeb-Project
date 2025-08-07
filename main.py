@@ -79,7 +79,6 @@ async def register(
 
     return RedirectResponse(url="/", status_code=status.HTTP_303_SEE_OTHER)
 
-
 @app.post("/login" , response_class=HTMLResponse, tags=["POST"])
 async def login(
     request: Request,
@@ -102,6 +101,7 @@ async def login(
 async def logout(request: Request):
     request.session.clear()
     return RedirectResponse(url="/", status_code=status.HTTP_303_SEE_OTHER)
+
 @app.get("/add", response_class=HTMLResponse)
 async def add_patient_page(request: Request, db: Session = Depends(get_db)):
     if "medecin_id" not in request.session:
