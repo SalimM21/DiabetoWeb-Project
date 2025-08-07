@@ -24,7 +24,7 @@ model = None
 scaler = None
 
 @app.get("/", response_class=HTMLResponse, tags=["GET"])
-async def login_page(request: Request):
+async def home_page(request: Request):
     if "medecin_id" in request.session:
         return RedirectResponse(url="/patients", status_code=status.HTTP_303_SEE_OTHER)
     return templates.TemplateResponse("index.html", {"request": request})
