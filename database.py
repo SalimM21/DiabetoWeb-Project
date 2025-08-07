@@ -38,7 +38,7 @@ class Medecin(Base):
     id = Column(Integer, primary_key=True, index=True)
     username = Column(String, unique=True, index=True)
     email = Column(String, unique=True, index=True)
-    password_hash = Column(String)
+    password = Column(String, nullable=False)
     created_at = Column(DateTime, default=datetime.utcnow)
 
     def set_password(self, password: str):

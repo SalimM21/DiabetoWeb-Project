@@ -1,113 +1,125 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ajouter un nouveau patient</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-        .container {
-            background-color: #fff;
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 450px;
-        }
-        h1 {
-            color: #333;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        label {
-            display: block;
-            margin-bottom: 5px;
-            color: #555;
-            font-weight: bold;
-        }
-        input[type="text"],
-        input[type="number"],
-        select {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-        button {
-            width: 100%;
-            padding: 10px;
-            background-color: #28a745;
-            color: #fff;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-            margin-top: 20px;
-        }
-        button:hover {
-            background-color: #218838;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ajouter un nouveau patient</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-image: url("/static/images/background.jpg"); /* chemin relatif */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background-color: rgba(255, 255, 255, 0.95); /* fond légèrement transparent */
+      padding: 40px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      width: 450px;
+      backdrop-filter: blur(3px); /* effet flou pour fond lisible */
+    }
+
+    h1 {
+      color: #333;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      color: #555;
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #28a745;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 20px;
+    }
+
+    button:hover {
+      background-color: #218838;
+    }
+  </style>
 </head>
 <body>
 
-    <div class="container">
-        <h1>Ajouter un nouveau patient</h1>
-        <form action="/add_patient" method="post">
-            
-            <div class="form-group">
-                <label for="name">Nom du patient :</label>
-                <input type="text" id="name" name="name" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="age">Âge :</label>
-                <input type="number" id="age" name="age" min="0" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="sex">Sexe :</label>
-                <select id="sex" name="sex">
-                    <option value="Male">Masculin</option>
-                    <option value="Female">Féminin</option>
-                    <option value="Other">Autre</option>
-                </select>
-            </div>
+  <div class="container">
+    <h1>Ajouter un nouveau patient</h1>
+    <form action="/add_patient" method="post">
 
-            <div class="form-group">
-                <label for="glucose">Glucose (mg/dL) :</label>
-                <input type="number" id="glucose" name="glucose" step="0.01">
-            </div>
+      <div class="form-group">
+        <label for="name">Nom du patient :</label>
+        <input type="text" id="name" name="name" required>
+      </div>
 
-            <div class="form-group">
-                <label for="bmi">IMC :</label>
-                <input type="number" id="bmi" name="bmi" step="0.01">
-            </div>
+      <div class="form-group">
+        <label for="age">Âge :</label>
+        <input type="number" id="age" name="age" min="0" required>
+      </div>
 
-            <div class="form-group">
-                <label for="bloodpressure">Tension artérielle (mmHg) :</label>
-                <input type="number" id="bloodpressure" name="bloodpressure">
-            </div>
+      <div class="form-group">
+        <label for="sex">Sexe :</label>
+        <select id="sex" name="sex">
+          <option value="Male">Masculin</option>
+          <option value="Female">Féminin</option>
+          <option value="Other">Autre</option>
+        </select>
+      </div>
 
-            <div class="form-group">
-                <label for="pedigree">Fonction Pedigree :</label>
-                <input type="number" id="pedigree" name="pedigree" step="0.0001">
-            </div>
+      <div class="form-group">
+        <label for="glucose">Glucose (mg/dL) :</label>
+        <input type="number" id="glucose" name="glucose" step="0.01">
+      </div>
 
-            <button type="submit">Ajouter le patient</button>
-        </form>
-    </div>
+      <div class="form-group">
+        <label for="bmi">IMC :</label>
+        <input type="number" id="bmi" name="bmi" step="0.01">
+      </div>
+
+      <div class="form-group">
+        <label for="bloodpressure">Tension artérielle (mmHg) :</label>
+        <input type="number" id="bloodpressure" name="bloodpressure">
+      </div>
+
+      <div class="form-group">
+        <label for="pedigree">Fonction Pedigree :</label>
+        <input type="number" id="pedigree" name="pedigree" step="0.0001">
+      </div>
+
+      <button type="submit">Ajouter le patient</button>
+    </form>
+  </div>
 
 </body>
 </html>
+
