@@ -81,10 +81,9 @@ Assurez-vous que les logiciels suivants sont installés sur votre machine :
 diabetoweb_app/
 ├── .vscode/
 ├── diabetes_model/
-├── ml_model/
 │   ├── diabetes_risk_prediction_model.pkl
 │   └── scaler.pkl 
-├── static/
+├── static/ ...
 ├── templates/
 │   ├── login.html
 │   ├── patients.html
@@ -99,7 +98,7 @@ diabetoweb_app/
 ├── main.py            # Logique de l'API FastAPI et routes
 ├── requirements.txt
 ├── schemas.py
-├── seed.py
+└── seed.py
 
 
 ```
