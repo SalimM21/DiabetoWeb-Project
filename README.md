@@ -79,14 +79,27 @@ Assurez-vous que les logiciels suivants sont installés sur votre machine :
 
 ```bash
 diabetoweb_app/
+├── .vscode/
+├── diabetes_model/
 ├── ml_model/
 │   ├── diabetes_risk_prediction_model.pkl
 │   └── scaler.pkl 
+├── static/
 ├── templates/
 │   ├── login.html
 │   ├── patients.html
-│   └── add_patient.html
-├── main.py        # Logique de l'API FastAPI et routes
-└── database.py    # Configuration de la BDD et modèles SQLAlchemy
+│   ├── add_patient.html
+│   └── update_patient.html
+├── .gitignore
+├── Dockerfile
+├── README.md
+├── connexion.py
+├── database.py        # Configuration de la BDD et modèles SQLAlchemy
+├── dependencies.py
+├── main.py            # Logique de l'API FastAPI et routes
+├── requirements.txt
+├── schemas.py
+├── seed.py
+
 
 ```
